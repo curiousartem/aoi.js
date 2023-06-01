@@ -182,8 +182,9 @@ class AoiError {
      */
     static functionErrorResolve(d, type, data, message) {
         let errorData = {
-            Function: `\`${d.command.codeLines}\``,
-            Command: `"${d.command.name}"`,
+            Function: `\`${d.func}\``,
+            Input: `\`${d.command.code}\``,
+            Command: `\`${d.command.name}\``,
             Version: require("../../package.json").version,
         };
 
@@ -216,7 +217,7 @@ class AoiError {
                 errorData.type = message;
                 break;
         }
-        return `\`\`\`js\nAoiError: ${d.func}: Invalid ${errorData.type} Provided In ${data.inside || ""} \n { \n   Function : ${errorData.Function},\n   Command : ${errorData.Command},\n   Version : ${errorData.Version} \n }\`\`\``;
+        return `\`\`\`js\nAoiError: ${d.func}: Invalid ${errorData.type} \n { \n   Function: ${errorData.Function},\n   Input: ${errorData.Input},\n   Command: ${errorData.Command},\n   Version: ${errorData.Version} \n }\`\`\``;
     }
 
     /**
